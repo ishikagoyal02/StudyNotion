@@ -39,12 +39,36 @@ function SignupForm() {
 
   // Handle Form Submission
   const handleOnSubmit = (e) => {
-    e.preventDefault()
-
-    if (password !== confirmPassword) {
-      toast.error("Passwords Do Not Match")
-      return
+    e.preventDefault();
+  
+    // Validating first name and last name
+    const nameRegex = /^[a-zA-Z]+$/;
+    if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+      toast.error("First name and last name should only contain alphabets");
+      return;
     }
+  
+    // Validating email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Invalid email address");
+      return;
+    }
+  
+    // Validating password
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error("Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number");
+      return;
+    }
+  
+    // Validating password confirmation
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+
     const signupData = {
       ...formData,
       accountType,

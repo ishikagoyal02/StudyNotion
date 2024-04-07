@@ -2,6 +2,7 @@ import { useState } from "react"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useDispatch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
+import { toast } from "react-hot-toast"
 
 import { login } from "../../../services/operations/authAPI"
 
@@ -15,7 +16,7 @@ function LoginForm() {
 
   const [showPassword, setShowPassword] = useState(false)
 
-  const { email, password } = formData
+  const { email, password} = formData
 
   const handleOnChange = (e) => {
     setFormData((prevData) => ({
@@ -26,7 +27,30 @@ function LoginForm() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
+
+    // Validating email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Invalid email address");
+      return;
+    }
+
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error("Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number");
+      return;
+    }
+
+    // const emailExists = checkIfEmailExists(email) // Implement this function
+    // if (!emailExists) {
+    //   // If email doesn't exist, redirect to signup
+    //   navigate("/signup")
+    //   return
+    // }
+
     dispatch(login(email, password, navigate))
+
+
   }
 
   return (

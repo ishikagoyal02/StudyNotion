@@ -1,5 +1,7 @@
+
+
 import "./App.css";
-import {Route, Routes, useNavigate } from "react-router-dom";
+import {Route, Routes, useNavigate } from "react-router-dom";   //******* */
 import Home from "./pages/Home"
 import Navbar from "./components/common/Navbar"
 import OpenRoute from "./components/core/Auth/OpenRoute"
@@ -28,8 +30,12 @@ import CourseDetails from "./pages/CourseDetails";
 import ViewCourse from "./pages/ViewCourse";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
+import { RiBarChartGroupedFill } from "react-icons/ri";
+
 
 function App() {
+
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,21 +44,34 @@ function App() {
 
 
   return (
+    
    <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
-    <Navbar/>
+   <div className="fixed top-0 left-0 right-0 z-50 bg-blue-1000">
+        <Navbar />
+      </div>
+                                                                           { /* ROUTES FOR PAGES */}
     <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="catalog/:catalogName" element={<Catalog/>} />
       <Route path="courses/:courseId" element={<CourseDetails/>} />
-      
+      <Route path="/about" element={ <About /> } />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="dashboard/my-profile" element={<MyProfile />} />
+      <Route path="dashboard/Settings" element={<Settings />} />
+      <Route path="*" element={<Error />} />
+        
+          
       <Route
           path="signup"
           element={
-            <OpenRoute>
+          <OpenRoute>                                         
               <Signup />
             </OpenRoute>
           }
         />
+
+
+
     <Route
           path="login"
           element={
@@ -61,6 +80,8 @@ function App() {
             </OpenRoute>
           }
         />
+
+
 
     <Route
           path="forgot-password"
@@ -71,6 +92,9 @@ function App() {
           }
         />  
 
+
+
+
       <Route
           path="verify-email"
           element={
@@ -79,6 +103,9 @@ function App() {
             </OpenRoute>
           }
         />  
+
+
+
 
     <Route
           path="update-password/:id"
@@ -89,15 +116,7 @@ function App() {
           }
         />  
 
-    <Route
-          path="/about"
-          element={
-            
-              <About />
-            
-          }
-        />
-    <Route path="/contact" element={<Contact />} />
+    
 
     <Route 
       element={
@@ -106,11 +125,8 @@ function App() {
         </PrivateRoute>
       }
     >
-      <Route path="dashboard/my-profile" element={<MyProfile />} />
       
-      <Route path="dashboard/Settings" element={<Settings />} />
       
-
       {
         user?.accountType === ACCOUNT_TYPE.STUDENT && (
           <>
@@ -119,6 +135,8 @@ function App() {
           </>
         )
       }
+
+
 
       {
         user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
@@ -132,7 +150,6 @@ function App() {
         )
       }
 
-
     </Route>
 
     
@@ -142,7 +159,7 @@ function App() {
         </PrivateRoute>
       }>
 
-      {
+       {
         user?.accountType === ACCOUNT_TYPE.STUDENT && (
           <>
           <Route 
@@ -151,13 +168,10 @@ function App() {
           />
           </>
         )
-      }
+      } 
 
       </Route>
 
-
-
-    <Route path="*" element={<Error />} />
 
 
     </Routes>

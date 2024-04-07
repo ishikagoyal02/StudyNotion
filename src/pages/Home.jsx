@@ -44,7 +44,7 @@ function Home() {
           instructors.
         </div>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons
         <div className="mt-8 flex flex-row gap-7">
           <CTAButton active={true} linkto={"/signup"}>
             Learn More
@@ -52,7 +52,7 @@ function Home() {
           <CTAButton active={false} linkto={"/login"}>
             Book a Demo
           </CTAButton>
-        </div>
+        </div> */}
 
         {/* Video */}
         <div className="mx-3 my-7 shadow-[10px_-5px_50px_-5px] shadow-blue-200">
@@ -158,7 +158,7 @@ function Home() {
             </div>
             <div className="flex flex-col items-start gap-10 lg:w-[40%]">
               <div className="text-[16px]">
-                The modern StudyNotion is the dictates its own terms. Today, to
+                The modern GoPrep is the dictates its own terms. Today, to
                 be a competitive specialist requires more than professional
                 skills.
               </div>

@@ -11,14 +11,18 @@ import { categories } from "../../services/apis"
 import { ACCOUNT_TYPE } from "../../utils/constants"
 import ProfileDropdown from "../core/Auth/ProfileDropDown"
 
+//In React, the assets directory is commonly used to store static assets such as images, fonts, icons, and other files that are required by your application. 
+
 function Navbar() {
-  const { token } = useSelector((state) => state.auth)
-  const { user } = useSelector((state) => state.profile)
-  const { totalItems } = useSelector((state) => state.cart)
-  const location = useLocation()
+  const { token } = useSelector((state) => state.auth)    //used for the authentication request to the server
+  const { user } = useSelector((state) => state.profile)  //extract the information about the user's profile
+  const { totalItems } = useSelector((state) => state.cart)//count of the items in user's cart
+  const location = useLocation()  //captures the current location of the browser
 
   const [subLinks, setSubLinks] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false) //loading=> whether some ansync oper. is currently in progress
+
+
 
   useEffect(() => {
     ;(async () => {
@@ -33,26 +37,47 @@ function Navbar() {
     })()
   }, [])
 
+
+
   // console.log("sub links", subLinks)
 
   const matchRoute = (route) => {
     return matchPath({ path: route }, location.pathname)
   }
 
+  // location.pathname is a property provided by React Router, representing the current URL path.
+  // matchPath is a function provided by React Router that matches a given path to the current location. 
+  //It returns null if there is no match or an object containing information about the match if there is one.
+
+
   return (
     <div
       className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 ${
-        location.pathname !== "/" ? "bg-richblack-800" : ""
+        location.pathname !== "/" ? "bg-richblack-800" : ""                   //navigtion bar color at home->> black else different
       } transition-all duration-200`}
     >
+
+
+
+
       <div className="flex w-11/12 max-w-maxContent items-center justify-between">
         {/* Logo */}
-        <Link to="/">
+        <Link to="/">       {/* links the image to the root url*/}
           <img src={logo} alt="Logo" width={160} height={32} loading="lazy" />
         </Link>
+
+
+
+
         {/* Navigation links */}
+
+        {/*md:block used to hide in the midle sized screen*/}
         <nav className="hidden md:block">
           <ul className="flex gap-x-6 text-richblack-25">
+
+            {/*This part maps over an array of NavbarLinks, rendering each link within a list item (<li>).
+            
+            navbar links is array of object*/}
             {NavbarLinks.map((link, index) => (
               <li key={index}>
                 {link.title === "Catalog" ? (
@@ -112,6 +137,9 @@ function Navbar() {
             ))}
           </ul>
         </nav>
+
+
+        
         {/* Login / Signup / Dashboard */}
         <div className="hidden items-center gap-x-4 md:flex">
           {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
