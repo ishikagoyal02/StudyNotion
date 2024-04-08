@@ -20,7 +20,6 @@ exports.signup = async (req, res) => {
       password,
       confirmPassword,
       accountType,
-      contactNumber,
       otp,
     } = req.body
     // Check if All Details are there or not
@@ -90,12 +89,10 @@ exports.signup = async (req, res) => {
       firstName,
       lastName,
       email,
-      contactNumber,
       password: hashedPassword,
-      accountType: accountType,
-      approved: approved,
+      accountType,
       additionalDetails: profileDetails._id,
-      image: "",
+      image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
     })
 
     return res.status(200).json({

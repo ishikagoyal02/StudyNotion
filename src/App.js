@@ -46,7 +46,7 @@ function App() {
   return (
     
    <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
-   <div className="fixed top-0 left-0 right-0 z-50 bg-blue-1000">
+   <div >
         <Navbar />
       </div>
                                                                            { /* ROUTES FOR PAGES */}
@@ -56,8 +56,8 @@ function App() {
       <Route path="courses/:courseId" element={<CourseDetails/>} />
       <Route path="/about" element={ <About /> } />
       <Route path="/contact" element={<Contact />} />
-      <Route path="dashboard/my-profile" element={<MyProfile />} />
-      <Route path="dashboard/Settings" element={<Settings />} />
+      {/* <Route path="dashboard/my-profile" element={<MyProfile />} />
+      <Route path="dashboard/Settings" element={<Settings />} /> */}
       <Route path="*" element={<Error />} />
         
           
@@ -125,7 +125,8 @@ function App() {
         </PrivateRoute>
       }
     >
-      
+      <Route path="dashboard/my-profile" element={<MyProfile />} />
+      <Route path="dashboard/Settings" element={<Settings />} />
       
       {
         user?.accountType === ACCOUNT_TYPE.STUDENT && (
