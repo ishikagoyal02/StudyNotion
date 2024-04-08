@@ -5,6 +5,7 @@ import { resetCart } from "../../slices/cartSlice"
 import { setUser } from "../../slices/profileSlice"
 import { apiConnector } from "../apiconnector"
 import { endpoints } from "../apis"
+import axios from 'axios';
 
 const {
   SENDOTP_API,
@@ -32,6 +33,7 @@ export function sendOtp(email, navigate) {
       }
 
       toast.success("OTP Sent Successfully")
+
       navigate("/verify-email")
     } catch (error) {
       console.log("SENDOTP API ERROR............", error)
@@ -82,6 +84,14 @@ export function signUp(
     toast.dismiss(toastId)
   }
 }
+
+
+// const type =user?.accountType
+
+// if(type ===ACCOUNT_TYPE.INSTRUCTOR)
+// {
+//   const t =
+// }
 
 export function login(email, password, navigate) {
   return async (dispatch) => {
@@ -165,6 +175,7 @@ export function resetPassword(password, confirmPassword, token) {
 
 
       if(!response.data.success) {
+        
         throw new Error(response.data.message);
       }
 

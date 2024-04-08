@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useState,useEffect  } from "react"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
-import { useDispatch } from "react-redux"
+import { useSelector,useDispatch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-hot-toast"
 
@@ -16,14 +16,14 @@ function LoginForm() {
 
   const [showPassword, setShowPassword] = useState(false)
 
-  const { email, password} = formData
+  const { email, password} = formData;
 
   const handleOnChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
       [e.target.name]: e.target.value,
-    }))
-  }
+    }));
+  };
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
@@ -40,15 +40,17 @@ function LoginForm() {
       toast.error("Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number");
       return;
     }
+  dispatch(login(email, password, navigate))
 
-    // const emailExists = checkIfEmailExists(email) // Implement this function
-    // if (!emailExists) {
-    //   // If email doesn't exist, redirect to signup
-    //   navigate("/signup")
-    //   return
-    // }
 
-    dispatch(login(email, password, navigate))
+  // try {
+  //   await dispatch(login(email, password, navigate));
+  //   // Redirect to dashboard or profile page upon successful login
+  // } catch (error) {
+  //   toast.error('Failed to login');
+  //   console.error('Login error:', error);
+  // }
+    
 
 
   }
