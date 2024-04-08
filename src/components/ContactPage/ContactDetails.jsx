@@ -13,14 +13,14 @@ const contactDetails = [
   {
     icon: "BiWorld",
     heading: "Visit us",
-    description: "Come and say hello at our office HQ.",
+    description: "Come and say hello at our hostel.",
     details:
-      "xyz,state,country",
+      "Shri Shanta Gram, Banasthali Vidyapith,304022",
   },
   {
     icon: "IoCall",
     heading: "Call us",
-    description: "Mon - Fri From 8am to 5pm",
+    description: "Wed - Mon From 5pm to 9pm",
     details: "+123 456 7869",
   },
 ]

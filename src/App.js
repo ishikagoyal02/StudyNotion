@@ -46,9 +46,9 @@ function App() {
   return (
     
    <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
-   <div >
-        <Navbar />
-      </div>
+   <div className="fixed top-0 left-0 right-0 z-50 bg-blue-1000 mb-50">
+  <Navbar />
+</div>
                                                                            { /* ROUTES FOR PAGES */}
     <Routes>
       <Route path="/" element={<Home/>} />
